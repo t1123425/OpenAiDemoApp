@@ -4,17 +4,25 @@ import {
     Stack,
     Heading,
     useColorModeValue,
+    Button,
   } from '@chakra-ui/react';
- import { AudioRecorder } from 'react-audio-voice-recorder';
- const addAudioElement = (blob:any) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement("audio");
-    audio.src = url;
-    audio.controls = true;
-    console.log('audio',audio);
-    // document.body.appendChild(audio);
-  };
-  export default function AudioForm() {
+ import { AudioRecorder,useAudioRecorder} from 'react-audio-voice-recorder';
+ import React,{useState} from 'react';
+
+  export default function AudioForm() { 
+    const recorderControls = useAudioRecorder();
+    const [audioSrc,setAudioSrc] = useState('');
+    const addAudioElement = (blob:Blob) => {
+        const output = document.getElementById('audio_output')
+        const url = URL.createObjectURL(blob);
+        console.log('audio url',url);
+        // setAudioSrc(url);
+        const audio = document.createElement("audio");
+        audio.src = url;
+        audio.controls = true;
+        // console.log('audio',audio);
+        output?.appendChild(audio);
+    };
     return (
         <Flex 
         minH={'100vh'}
@@ -30,7 +38,14 @@ import {
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}>
                     <Stack spacing={4}>
-                        <AudioRecorder onRecordingComplete={addAudioElement} />
+                        <AudioRecorder 
+                            onRecordingComplete={(blob) => addAudioElement(blob)}
+                            recorderControls={recorderControls} 
+                        />
+                        <div id="audio_output"></div>
+                        <Button onClick={recorderControls.stopRecording}>
+                            Stop Recording
+                        </Button>
                     </Stack>
                 </Box>
             </Stack>
