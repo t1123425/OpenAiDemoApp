@@ -12,8 +12,12 @@
 /.next/
 /out/
 
+# src pages (for dev test)
+/src/pages_test
+/src/views
 # production
 /build
+
 
 # misc
 .DS_Store

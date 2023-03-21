@@ -30,7 +30,7 @@ import {
                 <Link 
                 href={'/'}>
                   <Text
-                    textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+                    textAlign={'center'}
                     fontFamily={'heading'}
                     color={useColorModeValue('gray.800', 'white')}>
                     OpenAi Demo
