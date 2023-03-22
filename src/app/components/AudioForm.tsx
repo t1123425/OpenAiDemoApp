@@ -18,17 +18,7 @@ import {
     const [text,setText] = useState('');
     const [isLoad,setLoading] = useState(false);
     const {onOpen,isOpen,onClose} = useDisclosure();
-    // const [audioSrc,setAudioSrc] = useState('');
-    // const renderAudioRecord = () => {
-    //     if(typeof window !== 'undefined'){
-    //         return <AudioRecorder 
-    //                 onRecordingComplete={(blob) => SubmitAudio(blob)}
-    //                 recorderControls={recorderControls} 
-    //             />                               
-    //     }else{
-    //         return null
-    //     }
-    // }
+
     const SubmitAudio = async (blob:Blob) => {
         // const url = URL.createObjectURL(blob);
         const audioFile = new File([blob], "record.mp3", {type:'audio/mpeg',lastModified: new Date().getTime()});

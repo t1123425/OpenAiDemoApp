@@ -1,10 +1,7 @@
-'use client'
-import ClientRoot from "../components/ClientRoot"
-import AnimalNameForm from "../components/AnimalNameForm"
+// import ClientRoot from "@/app/components/ClientRoot"
+import AnimalNameForm from "@/app/components/AnimalNameForm"
 export default function AnimalName(){
     return (
-        <ClientRoot>
-            <AnimalNameForm></AnimalNameForm>
-        </ClientRoot>
+        <AnimalNameForm></AnimalNameForm>
     )
 }
