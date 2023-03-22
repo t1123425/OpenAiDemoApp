@@ -49,8 +49,8 @@ import {
 
         try{
             // const local_url = '/api/openai_whisper'
-            const apiUrl =  `${process.env.OPENAI_API_LINK}/${model.value}`
-            const response = await fetch(apiUrl,{
+            //const apiUrl =  `${process.env.OPENAI_API_LINK}/${model.value}`
+            const response = await fetch(`${process.env.OPENAI_API_TEST_LINK}`,{
                 method: "POST",
                 headers:requestHeaders,
                 body:formData
