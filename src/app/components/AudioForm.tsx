@@ -50,13 +50,13 @@ import {
         try{
             // const local_url = '/api/openai_whisper'
             //const apiUrl =  `${process.env.OPENAI_API_LINK}/${model.value}`
-            const response = await fetch(`${process.env.OPENAI_API_TEST_LINK}`,{
+            const response = await fetch(`${process.env.OPENAI_API_LINK}/${model.value}`,{
                 method: "POST",
                 headers:requestHeaders,
                 body:formData
             })
             const data = await response.json();
-            console.log('data',data);
+            //console.log('data',data);
             setText(data.text)
             onOpen();
             if (response.status !== 200) {
