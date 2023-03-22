@@ -7,15 +7,32 @@ import {
     useColorModeValue,
     Button,
     useDisclosure,
+    FormControl,
+    FormLabel,
+    Select,
     Text
   } from '@chakra-ui/react';
  import { AudioRecorder,useAudioRecorder} from 'react-audio-voice-recorder';
  import CustomModal from './CustomModal';
  import React,{useState} from 'react';
 
+  interface modelData{
+    title:string,
+    value:string
+  }
   export default function AudioForm() { 
     const recorderControls = useAudioRecorder();
     const [text,setText] = useState('');
+    const whisperModel:modelData[] = [
+        {
+            title:'Here is what you say',
+            value:'transcriptions'
+        },
+        {
+            title:'Translation what you say',
+            value:'translations'
+        }];
+    const [model,setModel] = useState<modelData>(whisperModel[0]);
     const [isLoad,setLoading] = useState(false);
     const {onOpen,isOpen,onClose} = useDisclosure();
 
@@ -32,7 +49,7 @@ import {
 
         try{
             // const local_url = '/api/openai_whisper'
-            const apiUrl =  `${process.env.OPENAI_API_LINK}`
+            const apiUrl =  `${process.env.OPENAI_API_LINK}/${model.value}`
             const response = await fetch(apiUrl,{
                 method: "POST",
                 headers:requestHeaders,
@@ -55,7 +72,7 @@ import {
     }
     return ( 
         <>
-         <CustomModal isOpen={isOpen} onClose={onClose} title='Here is what you say' value={text} />
+         <CustomModal isOpen={isOpen} onClose={onClose} title={model.title} value={text} />
          <Flex 
             minH={'100vh'}
             align={'center'}
@@ -70,6 +87,26 @@ import {
                         bg={useColorModeValue('white', 'gray.700')}
                         boxShadow={'lg'}>
                         <Stack spacing={4} p={3} align={'center'}>
+                            <FormControl>
+                                <FormLabel>
+                                    Model:
+                                </FormLabel>
+                                <Select 
+                                    variant='outline' 
+                                    size='md' 
+                                    defaultValue={model.value} 
+                                    onChange={(e)=>{ 
+                                        whisperModel.forEach((d)=>{
+                                            if(d.value === e.target.value){
+                                                setModel(d);
+                                            }
+                                        })
+                                    }}>
+                                    {
+                                        whisperModel.map((e,i) => <option key={i} value={e.value}>{e.value}</option>)
+                                    }
+                                </Select>
+                            </FormControl>
                             <AudioRecorder 
                                 onRecordingComplete={(blob) => SubmitAudio(blob)}
                                 recorderControls={recorderControls}></AudioRecorder>
