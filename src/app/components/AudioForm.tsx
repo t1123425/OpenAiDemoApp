@@ -12,16 +12,16 @@ import {
     Select,
     Text
   } from '@chakra-ui/react';
- import { AudioRecorder,useAudioRecorder} from 'react-audio-voice-recorder';
+
  import CustomModal from './CustomModal';
  import React,{useState} from 'react';
-
+ import dynamic from 'next/dynamic';
   interface modelData{
     title:string,
     value:string
   }
   export default function AudioForm() { 
-    const recorderControls = useAudioRecorder();
+    const VideoRecordingDialog = dynamic(() => import('../components/Recorder'), { ssr: false });
     const [text,setText] = useState('');
     const whisperModel:modelData[] = [
         {
@@ -107,17 +107,10 @@ import {
                                     }
                                 </Select>
                             </FormControl>
-                            <AudioRecorder 
-                                onRecordingComplete={(blob) => SubmitAudio(blob)}
-                                recorderControls={recorderControls}></AudioRecorder>
-                                {
-                                    recorderControls.isRecording && <Button  onClick={recorderControls.stopRecording}>
-                                            Stop Recording
-                                        </Button>
-                                }
-                                {
-                                    isLoad && <Text as='b'>Loading...</Text>
-                                }
+                            <VideoRecordingDialog getAudioBlob={SubmitAudio} />
+                            {
+                                isLoad && <Text as='b'>Loading...</Text>
+                            }
                         </Stack>
                     </Box>
                 </Stack>

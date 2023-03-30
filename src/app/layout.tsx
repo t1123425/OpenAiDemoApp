@@ -1,13 +1,8 @@
-'use client'
-// export const metadata = {
-//   title: 'OpenAiDemoApp',
-//   description: 'This is make for fun & practice! enjoy!',
-// }
-import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
-import NavBar from './components/Navbar'
-import InfoFooter from './components/InfoFooter'
-// import Head from 'next/head'
+export const metadata = {
+  title: 'OpenAiDemoApp',
+  description: 'This is make for fun & practice! enjoy!',
+}
+import ClientRoot from "./components/ClientRoot"
 export default function RootLayout({
   children,
 }: {
@@ -17,13 +12,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-      <CacheProvider>
-        <ChakraProvider>
-          <NavBar />
+        <ClientRoot>
           {children}
-          <InfoFooter />
-        </ChakraProvider>
-      </CacheProvider>
+        </ClientRoot>
       </body>
     </html>
   )

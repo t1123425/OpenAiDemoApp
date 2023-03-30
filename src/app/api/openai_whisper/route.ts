@@ -38,7 +38,7 @@ export async function POST(request:NextApiRequest ){
         // console.log('whisper',whisper);
         // const form = new formidable.IncomingForm();
         // form.parse(request,(err, fields, files) => {
-        //     if(err){
+        //     if(err){ 
         //         console.error(err);
         //         return NextResponse.json({
         //             error:{message:'Error parsing form data.'}

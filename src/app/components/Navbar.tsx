@@ -28,6 +28,10 @@ import {
     {
       label:'Animal Name generate',
       href:'/animalName'
+    },
+    {
+      label:'chat GPT Demo',
+      href:'/chatGPT'
     }
   ]
   export default function NavBar() {

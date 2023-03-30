@@ -7,7 +7,6 @@ import {
     useColorModeValue,
     VisuallyHidden,
   } from '@chakra-ui/react';
-  import React from 'react';
   import { FaGithubSquare } from 'react-icons/fa';
 
   export default function InfoFooter(){
