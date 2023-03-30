@@ -11,11 +11,10 @@ import {
   import dynamic from 'next/dynamic';
   import React,{useState} from 'react';
 export default function ReadTimeRecord(){
-    const VideoRecordingDialog = dynamic(() => import('../components/Recorder'), { ssr: false });
+    const VideoRecordingDialog = dynamic(() => import('@/app/components/Recorder'), { ssr: false });
     const [audioUrl,setAudioUrl] = useState('');
     
     function updateAudio(blob:Blob){
-      console.log('blobUrl',blob);
       setAudioUrl(URL.createObjectURL(blob))
     }
     return (

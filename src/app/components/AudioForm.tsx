@@ -21,7 +21,7 @@ import {
     value:string
   }
   export default function AudioForm() { 
-    const VideoRecordingDialog = dynamic(() => import('../components/Recorder'), { ssr: false });
+    const VideoRecordingDialog = dynamic(() => import('@/app/components/Recorder'), { ssr: false });
     const [text,setText] = useState('');
     const whisperModel:modelData[] = [
         {
