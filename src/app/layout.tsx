@@ -2,7 +2,7 @@ export const metadata = {
   title: 'OpenAiDemoApp',
   description: 'This is make for fun & practice! enjoy!',
 }
-import ClientRoot from "@/app/components/ClientRoot"
+import ClientRoot from "./components/clientRoot"
 export default function RootLayout({
   children,
 }: {
