@@ -1,13 +1,11 @@
-import { Configuration, OpenAIApi } from "openai";
+import { OpenAIApi } from "openai";
 import { NextResponse} from "next/server";
 import { NextApiRequest} from "next";
 import formidable from "formidable";
+import { apiConfirm } from "../apiConfiguration";
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAIApi(apiConfirm);
 
 const formidableParse = async (req:NextApiRequest) =>
   new Promise((resolve, reject) => {
@@ -20,7 +18,7 @@ const formidableParse = async (req:NextApiRequest) =>
 
 export async function POST(request:NextApiRequest ){
     
-    if (!configuration.apiKey){
+    if (!apiConfirm.apiKey){
         return NextResponse.json({
             error:{
                 message: "OpenAI API key not configured, please follow instructions in README.md",

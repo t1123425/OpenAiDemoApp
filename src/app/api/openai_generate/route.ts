@@ -1,10 +1,9 @@
-import { Configuration, OpenAIApi } from "openai";
+import { OpenAIApi } from "openai";
 import { NextResponse } from "next/server";
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+import { apiConfirm } from "../apiConfiguration";
 
-const openai = new OpenAIApi(configuration);
+
+const openai = new OpenAIApi(apiConfirm);
 
 function generatePrompt(animal:string) {
     const capitalizedAnimal =
@@ -18,7 +17,7 @@ function generatePrompt(animal:string) {
         Names:`;
   }
 export async function POST(request: Request){
-    if (!configuration.apiKey){
+    if (!apiConfirm.apiKey){
         return NextResponse.json({
             error:{
                 message: "OpenAI API key not configured, please follow instructions in README.md",
