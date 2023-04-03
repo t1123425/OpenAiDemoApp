@@ -21,7 +21,7 @@ export async function POST(request: Request){
             model:'gpt-3.5-turbo',
             messages:res.msgs
         })
-        console.log('chatResponse',chatResponse);
+        // console.log('chatResponse',chatResponse);
         return NextResponse.json({
             result:'success',
             data:chatResponse.data
