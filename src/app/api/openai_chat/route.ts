@@ -16,7 +16,7 @@ export async function POST(request: Request){
     }
     try {
         const res = await request.json();
-        console.log('backend res',res);
+        // console.log('backend res',res);
         const chatResponse = await openai.createChatCompletion({
             model:'gpt-3.5-turbo',
             messages:res.msgs

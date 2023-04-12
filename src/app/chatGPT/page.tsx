@@ -40,7 +40,7 @@ export default function ChatGPT(){
     }
     const sendMsg = async () => {
         // console.log('msgs',msgs);
-
+        setLoad(true);
         try{
             const response = await fetch('/api/openai_chat',{
                 method:'POST',
@@ -49,7 +49,7 @@ export default function ChatGPT(){
                 },
                 body:JSON.stringify({msgs:msgs})
             })
-            setLoad(true);
+            
             const res = await response.json();
             if (response.status !== 200) {
                 throw res.error || new Error(`Request failed with status ${response.status}`);
